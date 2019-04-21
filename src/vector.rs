@@ -9,31 +9,31 @@ use std::str::FromStr;
 pub struct Vector3D([f32; 3]);
 
 impl Vector3D {
-    pub fn new(e1: f32, e2: f32, e3: f32) -> Vector3D {
+    pub const fn new(e1: f32, e2: f32, e3: f32) -> Vector3D {
         Vector3D([e1, e2, e3])
     }
 
-    pub fn x(&self) -> f32 {
+    pub const fn x(&self) -> f32 {
         self.0[0]
     }
 
-    pub fn y(&self) -> f32 {
+    pub const fn y(&self) -> f32 {
         self.0[1]
     }
 
-    pub fn z(&self) -> f32 {
+    pub const fn z(&self) -> f32 {
         self.0[2]
     }
 
-    pub fn r(&self) -> f32 {
+    pub const fn r(&self) -> f32 {
         self.0[0]
     }
 
-    pub fn g(&self) -> f32 {
+    pub const fn g(&self) -> f32 {
         self.0[1]
     }
 
-    pub fn b(&self) -> f32 {
+    pub const fn b(&self) -> f32 {
         self.0[2]
     }
 
@@ -115,6 +115,14 @@ impl Mul<f32> for Vector3D {
 
     fn mul(self, other: f32) -> Self::Output {
         Vector3D::new(self.x() * other, self.y() * other, self.z() * other)
+    }
+}
+
+impl Mul<Vector3D> for f32 {
+    type Output = Vector3D;
+
+    fn mul(self, other: Vector3D) -> Self::Output {
+        other * self
     }
 }
 
