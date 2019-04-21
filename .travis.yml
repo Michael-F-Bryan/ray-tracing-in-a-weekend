@@ -9,7 +9,7 @@ script:
 
 before_deploy:
   - cargo doc --verbose
-  _ echo '<meta http_equiv="refresh" content="0; url=ray_tracing_in_a_weekend/index.html" /> ' > target/doc/index.html
+  - echo '<meta http_equiv="refresh" content="0; url=ray_tracing_in_a_weekend/index.html" /> ' > target/doc/index.html
 
 deploy:
   provider: pages
