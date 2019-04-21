@@ -1,3 +1,4 @@
+use ray_tracing_in_a_weekend::Vector3D;
 use std::io::{self, Write};
 
 fn header<W: Write>(w: &mut W, width: usize, height: usize) -> io::Result<()> {
@@ -8,10 +9,10 @@ fn header<W: Write>(w: &mut W, width: usize, height: usize) -> io::Result<()> {
     Ok(())
 }
 
-fn pixel<W: Write>(w: &mut W, r: f32, g: f32, b: f32) -> io::Result<()> {
-    let r = (r * 256.0) as u8;
-    let g = (g * 256.0) as u8;
-    let b = (b * 256.0) as u8;
+fn pixel<W: Write>(w: &mut W, p: Vector3D) -> io::Result<()> {
+    let r = (p.r() * 256.0) as u8;
+    let g = (p.g() * 256.0) as u8;
+    let b = (p.b() * 256.0) as u8;
 
     write!(w, "{} {} {}", r, g, b)
 }
@@ -25,15 +26,13 @@ fn main() -> io::Result<()> {
 
     for y in (0..height).rev() {
         for x in 0..width {
-            let r = (x as f32)/(width as f32);
-            let g = (y as f32)/(height as f32);
-            let b = 0.2;
+            let colour = Vector3D::new((x as f32)/(width as f32), (y as f32)/(height as f32), 0.2);
 
             if x > 0 {
                 write!(&mut out, "\t")?;
             }
 
-            pixel(&mut out, r, g, b)?;
+            pixel(&mut out, colour)?;
         }
 
         write!(&mut out, "\n")?;
