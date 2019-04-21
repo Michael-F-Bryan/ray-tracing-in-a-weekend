@@ -1,5 +1,9 @@
 # Ray Tracing in a Weekend
 
+[![Build Status](https://travis-ci.com/Michael-F-Bryan/ray-tracing-in-a-weekend.svg?branch=master)](https://travis-ci.com/Michael-F-Bryan/ray-tracing-in-a-weekend)
+
+([API Docs])
+
 Implementation of Peter Shirley's [Ray Tracing in a Weekend][rtiw] in Rust.
 
 ## License
@@ -21,3 +25,4 @@ license, shall be dual licensed as above, without any additional terms or
 conditions.
 
 [rtiw]: https://github.com/petershirley/raytracinginoneweekend
+[API Docs]: https://michael-f-bryan.github.io/ray-tracing-in-a-weekend
