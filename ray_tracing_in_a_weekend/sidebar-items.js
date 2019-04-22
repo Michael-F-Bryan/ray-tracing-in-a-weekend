@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Vector3D",""]]});
+initSidebarItems({"mod":[["ppm",""]],"struct":[["Ray",""],["Vector3D",""]]});
