@@ -50,6 +50,6 @@ mod tests {
         assert_eq!(got, BLUE);
         let mut buffer = Vec::new();
         pixel(&mut buffer, got).unwrap();
-        assert_eq!("asd", String::from_utf8(buffer).unwrap());
+        assert_eq!("127 179 255\n", String::from_utf8(buffer).unwrap());
     }
 }
