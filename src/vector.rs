@@ -1,12 +1,19 @@
 use std::fmt::{self, Display, Formatter};
 use std::num::ParseFloatError;
-use std::ops::{Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Sub, SubAssign};
+use std::ops::{
+    Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Neg, Sub, SubAssign,
+};
 use std::str::FromStr;
 
 #[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct Vector3D([f32; 3]);
 
 impl Vector3D {
+    pub const ZERO: Vector3D = Vector3D::new(0.0, 0.0, 0.0);
+    pub const X_AXIS: Vector3D = Vector3D::new(1.0, 0.0, 0.0);
+    pub const Y_AXIS: Vector3D = Vector3D::new(0.0, 1.0, 0.0);
+    pub const Z_AXIS: Vector3D = Vector3D::new(0.0, 0.0, 1.0);
+
     pub const fn new(e1: f32, e2: f32, e3: f32) -> Vector3D {
         Vector3D([e1, e2, e3])
     }
@@ -177,6 +184,14 @@ impl Div<f32> for Vector3D {
 impl DivAssign<f32> for Vector3D {
     fn div_assign(&mut self, other: f32) {
         *self = *self / other;
+    }
+}
+
+impl Neg for Vector3D {
+    type Output = Vector3D;
+
+    fn neg(self) -> Self::Output {
+        self * -1.0
     }
 }
 
