@@ -4,11 +4,7 @@ use std::io::{self, Write};
 pub const WHITE: Vector3D = Vector3D::new(1.0, 1.0, 1.0);
 pub const BLUE: Vector3D = Vector3D::new(0.5, 0.7, 1.0);
 
-pub fn header<W: Write>(
-    w: &mut W,
-    width: usize,
-    height: usize,
-) -> io::Result<()> {
+pub fn header<W: Write>(w: &mut W, width: usize, height: usize) -> io::Result<()> {
     writeln!(w, "P3")?;
     writeln!(w, "{} {}", width, height)?;
     writeln!(w, "255")?;

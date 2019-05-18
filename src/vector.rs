@@ -1,8 +1,6 @@
 use std::fmt::{self, Display, Formatter};
 use std::num::ParseFloatError;
-use std::ops::{
-    Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign,
-};
+use std::ops::{Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Sub, SubAssign};
 use std::str::FromStr;
 
 #[derive(Debug, Default, Copy, Clone, PartialEq)]
@@ -92,6 +90,24 @@ impl AddAssign for Vector3D {
     }
 }
 
+impl Sub for Vector3D {
+    type Output = Vector3D;
+
+    fn sub(self, other: Vector3D) -> Self::Output {
+        Vector3D::new(
+            self.x() - other.x(),
+            self.y() - other.y(),
+            self.z() - other.z(),
+        )
+    }
+}
+
+impl SubAssign for Vector3D {
+    fn sub_assign(&mut self, other: Vector3D) {
+        *self = *self - other;
+    }
+}
+
 impl Mul for Vector3D {
     type Output = Vector3D;
 
@@ -174,8 +190,7 @@ impl FromStr for Vector3D {
     type Err = ParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let mut words =
-            s.trim().split_whitespace().map(|word| f32::from_str(word));
+        let mut words = s.trim().split_whitespace().map(|word| f32::from_str(word));
 
         let x = words.next().ok_or(ParseError::NotEnoughWords)??;
         let y = words.next().ok_or(ParseError::NotEnoughWords)??;
