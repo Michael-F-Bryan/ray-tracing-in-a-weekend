@@ -1,3 +1,5 @@
+#![feature(clamp)]
+
 mod hitable;
 pub mod ppm;
 mod ray;

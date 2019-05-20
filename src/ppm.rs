@@ -13,9 +13,9 @@ pub fn header<W: Write>(w: &mut W, width: usize, height: usize) -> io::Result<()
 }
 
 pub fn pixel<W: Write>(w: &mut W, p: Vector3D) -> io::Result<()> {
-    let r = (p.r() * 255.9999) as u8;
-    let g = (p.g() * 255.9999) as u8;
-    let b = (p.b() * 255.9999) as u8;
+    let r = (p.r() * 256.0).clamp(0.0, 255.0) as u8;
+    let g = (p.g() * 256.0).clamp(0.0, 255.0) as u8;
+    let b = (p.b() * 256.0).clamp(0.0, 255.0) as u8;
 
     writeln!(w, "{} {} {}", r, g, b)
 }
@@ -46,6 +46,6 @@ mod tests {
         assert_eq!(got, BLUE);
         let mut buffer = Vec::new();
         pixel(&mut buffer, got).unwrap();
-        assert_eq!("127 179 255\n", String::from_utf8(buffer).unwrap());
+        assert_eq!("128 179 255\n", String::from_utf8(buffer).unwrap());
     }
 }

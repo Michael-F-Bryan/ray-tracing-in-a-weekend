@@ -2,15 +2,15 @@ use ray_tracing_in_a_weekend::{ppm, Hitable, Ray, Sphere, Vector3D};
 use std::io::{self, Write};
 
 pub fn main() -> io::Result<()> {
-    let width = 1000;
-    let height = 500;
+    let width = 800;
+    let height = 640;
     let mut out = io::stdout();
 
     let lower_left = Vector3D::new(-2.0, -1.0, 1.0);
     let horizontal = Vector3D::new(4.0, 0.0, 0.0);
     let vertical = Vector3D::new(0.0, 2.0, 0.0);
     let origin = Vector3D::default();
-    let sphere = Sphere::new(Vector3D::new(0.0, 0.0, 1.0), 0.5);
+    let sphere = Sphere::new(Vector3D::new(-0.5, 0.5, 1.0), 0.5);
 
     ppm::header(&mut out, width, height)?;
     writeln!(out)?;
